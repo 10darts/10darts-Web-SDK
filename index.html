@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>10dats webpush</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css">
+</head>
+<body>
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h1 class="title">10darts</h1>
+          <div class="notification is-danger errors" style="display: none"></div>
+          <h2 class="title is-4">App info</h2>
+          <table class="table is-fullwidth">
+            <tbody>
+              <tr>
+                <th>Device</th>
+                <td id="deviceCode"></td>
+              </tr>
+              <tr>
+                <th>Persona</th>
+                <td id="personaCode"></td>
+              </tr>
+              <tr>
+                <th>Push subscribed:</th>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <form id="formClientData">
+            <div class="field">
+              <label class="label">Client Data</label>
+              <div class="control">
+                <input class="input" type="text" id="clientData" required>
+              </div>
+            </div>
+            <div class="control">
+              <button type="submit" class="is-primary button">
+                Update persona with client data
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script type="text/javascript" src="10darts.js"></script>
+  <script>
+    Tendarts.init({
+      token: '2bcdd7893d0b71f03cd60fd9b354de1014f6cca5',
+      publicKey: 'BNDFZ4Jo2eKgugRaASyqWTmgT6fVZKiwIBeJiMdHARt0JPmqGtCvBqWhq0oNVYQDKnChy8WXkEzRTKeNyA-CsD8',
+      autosubscribe: true,
+    });
+    document.querySelector('#deviceCode').textContent = Tendarts.getDeviceCode();
+    document.querySelector('#personaCode').textContent = Tendarts.getPersonaCode();
+
+    document.addEventListener('10DARTS_CREATE_USER', function() {
+      document.querySelector('#deviceCode').textContent = Tendarts.getDeviceCode();
+      document.querySelector('#personaCode').textContent = Tendarts.getPersonaCode();
+    }, false);
+
+    document.querySelector('#formClientData').onsubmit = (event) => {
+      event.preventDefault();
+      Tendarts.linkDeviceClientData(document.querySelector('#clientData').value)
+        .then(res => {
+          document.querySelector('#personaCode').textContent = res.persona;
+        });
+    };
+  </script>
+</body>
+</html>
