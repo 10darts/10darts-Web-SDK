@@ -1,10 +1,11 @@
 {
   "name": "10darts-web-sdk",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "10darts is a smart push notification platform. This SDK makes it easy to integrate your web with 10darts.",
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "staging": "webpack --config webpack.staging.js"
   },
   "keywords": [
     "10darts"
@@ -17,6 +18,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "clean-webpack-plugin": "^0.1.17",
+    "dotenv-webpack": "^1.5.4",
     "eslint": "^4.8.0",
     "eslint-config-airbnb-base": "^12.0.2",
     "eslint-plugin-import": "^2.7.0",

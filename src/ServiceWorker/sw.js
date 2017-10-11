@@ -1,13 +1,23 @@
 import received from '../push/received';
 import follow from '../push/follow';
 
+function ramdomDelay() {
+  const MAX_DELAY = 1000;
+  return Math.floor(Math.random() * MAX_DELAY);
+}
+
+function getData(data) {
+  try {
+    return data.json();
+  } catch (e) {
+    return {};
+  }
+}
+
 self.addEventListener('push', (event) => {
   console.log('[Service Worker] Push Received');
-  // console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
-  // console.log('json', event.data.json)
-  const data = event.data ? event.data.json() : {};
-  console.log('json', data)
-  // const data = event.data.text();
+  const data = getData(event.data);
+  // console.log('json', data);
   const {
     code,
     title,
@@ -36,7 +46,8 @@ self.addEventListener('push', (event) => {
     },
   };
   if (confirmationNeeded) {
-    received(code, device, token);
+    const delay = ramdomDelay();
+    setTimeout(() => received(code, device, token), delay);
   }
   if (!silentPush) {
     const notificationPromise = self.registration.showNotification(title, options);
@@ -46,7 +57,6 @@ self.addEventListener('push', (event) => {
 
 self.addEventListener('notificationclick', (event) => {
   console.log('[Service Worker] Notification click Received.');
-  console.log('data', event.notification.data)
   event.notification.close();
   const { data } = event.notification;
   follow(data.code, data.device, data.token);

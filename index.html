@@ -52,8 +52,8 @@
   <script type="text/javascript" src="10darts.js"></script>
   <script>
     Tendarts.init({
-      token: '',
-      publicKey: '',
+      token: '<%= process.env.TOKEN %>',
+      publicKey: '<%= process.env.APPLICATION_KEY %>',
       autosubscribe: true,
     });
     document.querySelector('#deviceCode').textContent = Tendarts.getDeviceCode();
