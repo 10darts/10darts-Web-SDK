@@ -3,6 +3,7 @@ import {
   PUBLIC_KEY,
   CREATE_USER_EVENT,
 } from './configuration';
+import registerServiceWorker from './ServiceWorker/registration';
 import createDevice from './devices/create';
 import accessDevice from './devices/access';
 import getDeviceCode from './devices/getDeviceCode';
@@ -22,6 +23,7 @@ export default function init(config = defaultConfig) {
   if (!publicKey) {
     throw new Error('Public key is required');
   }
+  registerServiceWorker();
   localStorage.setItem(TOKEN, token);
   localStorage.setItem(PUBLIC_KEY, publicKey);
   const noDevice = !getDeviceCode();
@@ -29,7 +31,6 @@ export default function init(config = defaultConfig) {
     createDevice();
   } else {
     accessDevice();
-    subscribe();
   }
   if (autosubscribe) {
     document.addEventListener(CREATE_USER_EVENT, () => subscribe(), false);

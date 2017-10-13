@@ -6,9 +6,9 @@
 
 You can read the documentation here.
 
-## Installation
+## Contributing
 
-1. `git clone `
+1. `git clone https://github.com/10darts/web-TendartsSDK.git`
 2. `npm install`
 3. `touch .env`
 4. Edit the .env file and add your application credentials from your [dashboard](https://10darts.com/app/applications):
