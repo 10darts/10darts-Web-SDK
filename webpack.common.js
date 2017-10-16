@@ -5,8 +5,8 @@ const OUTPUT_PATH = path.resolve(__dirname, 'dist');
 
 module.exports = {
   entry: {
-    '10darts': ['whatwg-fetch', path.resolve(ENTRY_PATH, 'index.js')],
-    sw: path.resolve(ENTRY_PATH, 'ServiceWorker/sw.js'),
+    '10dartsSDK': ['whatwg-fetch', path.resolve(ENTRY_PATH, 'index.js')],
+    '10dartsServiceWorker': path.resolve(ENTRY_PATH, 'ServiceWorker/sw.js'),
   },
   output: {
     path: OUTPUT_PATH,

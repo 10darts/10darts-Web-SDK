@@ -1,9 +1,17 @@
 # 10darts Web SDK
 
-You can see the full documentation [here](http://docs.10darts.com/).
+10darts is a smart push notification platform.
 
-## Build source
+## Getting Started
 
-To build the production ready files:
+You can read the documentation [here](http://docs.10darts.com/).
 
-    npm run build
+## Contributing
+
+1. `git clone https://github.com/10darts/web-TendartsSDK.git`
+2. `npm install`
+3. `touch .env`
+4. Edit the .env file and add your application credentials from your [dashboard](https://10darts.com/app/applications):
+  `TOKEN=your_token`
+  `APPLICATION_KEY=your_application_key`
+5. `npm start`
