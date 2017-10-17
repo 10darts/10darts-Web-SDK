@@ -4,7 +4,7 @@
 
 ## Getting Started
 
-You can read the documentation [here](http://docs.10darts.com/).
+You can read the documentation [here](https://docs.10darts.com/).
 
 ## Contributing
 
