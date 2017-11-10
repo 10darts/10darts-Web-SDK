@@ -2,6 +2,10 @@
   "name": "10darts-web-sdk",
   "version": "0.1.0",
   "description": "10darts is a smart push notification platform. This SDK makes it easy to integrate your web with 10darts.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/10darts/web-TendartsSDK.git"
+  },
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
@@ -10,8 +14,12 @@
   "keywords": [
     "10darts"
   ],
-  "author": "10darts",
+  "author": "10darts Inc.",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/10darts/web-TendartsSDK/issues"
+  },
+  "homepage": "https://10darts.com/",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
