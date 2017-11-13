@@ -14,7 +14,7 @@ export default function linkDeviceClientData(clientData) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Token ${token}`,
+      Authorization: `AppToken ${token}`,
     },
     body: JSON.stringify({
       device: `/api/v1/devices/${device}/`,

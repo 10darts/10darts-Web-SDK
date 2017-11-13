@@ -8,7 +8,7 @@ export default function received(pushCode, deviceCode, token) {
   return fetch(url, {
     method: 'POST',
     headers: {
-      Authorization: `Token ${token}`,
+      Authorization: `AppToken ${token}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({

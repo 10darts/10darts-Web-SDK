@@ -16,7 +16,7 @@ export default function () {
   fetch(url, {
     method: 'POST',
     headers: {
-      Authorization: `Token ${token}`,
+      Authorization: `AppToken ${token}`,
       'Content-Type': 'application/json',
     },
   })
