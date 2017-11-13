@@ -1,6 +1,7 @@
 {
   "name": "10darts-web-sdk",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "release": "0.1",
   "description": "10darts is a smart push notification platform. This SDK makes it easy to integrate your web with 10darts.",
   "repository": {
     "type": "git",

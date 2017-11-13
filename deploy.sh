@@ -2,7 +2,7 @@
 
 # Variables
 # ------------------------------------------------------------------------------
-readonly PACKAGE_VERSION="v$(node -p -e "require('./package.json').version")"
+readonly PACKAGE_VERSION="v$(node -p -e "require('./package.json').release")"
 readonly AWS_S3_BUCKET="sdk.10darts.com"
 
 # Buld and upload
