@@ -24,7 +24,7 @@ export default function init(config = defaultConfig) {
   if (!publicKey) {
     throw new Error('Public key is required');
   }
-  // registerServiceWorker();
+  registerServiceWorker();
   localStorage.setItem(TOKEN, token);
   localStorage.setItem(PUBLIC_KEY, publicKey);
   const noDevice = !getDeviceCode();
