@@ -13,6 +13,7 @@ const defaultConfig = {
   publicKey: null,
   token: null,
   autosubscribe: false,
+  debug: false,
 };
 
 export default function init(config = defaultConfig) {
@@ -23,7 +24,7 @@ export default function init(config = defaultConfig) {
   if (!publicKey) {
     throw new Error('Public key is required');
   }
-  registerServiceWorker();
+  // registerServiceWorker();
   localStorage.setItem(TOKEN, token);
   localStorage.setItem(PUBLIC_KEY, publicKey);
   const noDevice = !getDeviceCode();
@@ -35,4 +36,5 @@ export default function init(config = defaultConfig) {
   if (autosubscribe) {
     document.addEventListener(CREATE_USER_EVENT, () => subscribe(), false);
   }
+  subscribe();
 }
