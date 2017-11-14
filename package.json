@@ -1,6 +1,6 @@
 {
   "name": "10darts-web-sdk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "release": "0.1",
   "description": "10darts is a smart push notification platform. This SDK makes it easy to integrate your web with 10darts.",
   "repository": {
@@ -10,7 +10,9 @@
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "staging": "webpack --config webpack.staging.js"
+    "staging": "webpack --config webpack.staging.js",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "keywords": [
     "10darts"
@@ -24,6 +26,7 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
+    "babel-jest": "^21.2.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "clean-webpack-plugin": "^0.1.17",
@@ -31,7 +34,10 @@
     "eslint": "^4.8.0",
     "eslint-config-airbnb-base": "^12.0.2",
     "eslint-plugin-import": "^2.7.0",
+    "fetch-mock": "^5.13.1",
     "html-webpack-plugin": "^2.30.1",
+    "jest": "^21.2.1",
+    "regenerator-runtime": "^0.11.0",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1",

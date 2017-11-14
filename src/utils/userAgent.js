@@ -1,1 +1,1 @@
-export default () => navigator ? navigator.userAgent : null;
+export default () => (navigator ? navigator.userAgent : null);

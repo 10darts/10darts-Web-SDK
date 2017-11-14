@@ -13,6 +13,7 @@ const defaultConfig = {
   publicKey: null,
   token: null,
   autosubscribe: false,
+  debug: false,
 };
 
 export default function init(config = defaultConfig) {
@@ -35,4 +36,5 @@ export default function init(config = defaultConfig) {
   if (autosubscribe) {
     document.addEventListener(CREATE_USER_EVENT, () => subscribe(), false);
   }
+  subscribe();
 }
