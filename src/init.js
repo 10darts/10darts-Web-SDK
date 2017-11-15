@@ -36,5 +36,4 @@ export default function init(config = defaultConfig) {
   if (autosubscribe) {
     document.addEventListener(CREATE_USER_EVENT, () => subscribe(), false);
   }
-  subscribe();
 }

@@ -5,6 +5,7 @@ import getPersonaCode from './devices/getPersonaCode';
 import subscribe from './push/subscribe';
 import unsubscribe from './push/unsubscribe';
 import registration from './ServiceWorker/registration';
+import clear from './utils/clear';
 
 window.Tendarts = {
   init,
@@ -14,4 +15,5 @@ window.Tendarts = {
   subscribe,
   unsubscribe,
   registration,
+  clear,
 };
