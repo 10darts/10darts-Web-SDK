@@ -1,5 +1,6 @@
+import { store } from '../utils';
 import { DEVICE } from '../configuration';
 
 export default function () {
-  return localStorage.getItem(DEVICE);
+  return store.getState().device || localStorage.getItem(DEVICE);
 }

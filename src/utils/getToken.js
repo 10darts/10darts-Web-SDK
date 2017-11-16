@@ -1,5 +1,6 @@
 import { TOKEN } from '../configuration';
+import store from './store';
 
 export default function getToken() {
-  return localStorage.getItem(TOKEN);
+  return store.getState().token || localStorage.getItem(TOKEN);
 }

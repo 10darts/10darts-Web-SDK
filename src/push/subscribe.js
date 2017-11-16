@@ -1,10 +1,10 @@
 import swRegistration from '../ServiceWorker/registration';
 import getPublicKey from '../utils/getPublicKey';
 import subscriptionToServer from './subscriptionToServer';
-import { urlB64ToUint8Array } from '../utils/helpers';
+import { urlB64ToUint8Array, logger } from '../utils';
 
 export default function () {
-  console.log('subscribe');
+  logger('subscribe');
   swRegistration()
     .then((registration) => {
       registration.pushManager.getSubscription()
@@ -17,14 +17,14 @@ export default function () {
               applicationServerKey,
             })
               .then((subscription) => {
-                console.log('User is subscribed.', subscription);
-                console.log(JSON.stringify(subscription));
+                logger('User is subscribed.', subscription);
+                logger(JSON.stringify(subscription));
                 subscriptionToServer(subscription);
               });
           } else {
-            console.log('User has subscription.');
+            logger('User has subscription.');
           }
         })
-        .catch(err => console.log('Failed to subscribe the user: ', err));
+        .catch(err => logger('Failed to subscribe the user: ', err));
     });
 }
