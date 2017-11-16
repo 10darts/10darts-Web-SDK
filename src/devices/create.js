@@ -1,11 +1,8 @@
 import randomize from 'randomatic';
 import navigatorLanguage from '../utils/navigatorLanguage';
-import userAgent from '../utils/userAgent';
-import getToken from '../utils/getToken';
-import { getCodeFromUrl } from '../utils/helpers';
+import { getCodeFromUrl, userAgent } from '../utils/helpers';
 import { post } from '../utils/api';
 import {
-  URL_API,
   DEVICE,
   PERSONA,
   LAST_ACCESS,

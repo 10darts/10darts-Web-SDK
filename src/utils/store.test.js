@@ -8,6 +8,9 @@ const initialState = {
   debug: false,
 };
 describe('Store', () => {
+  afterEach(() => {
+    store.setState(initialState);
+  });
   test('initial state state', () => {
     const state = store.getState();
     const expectedState = initialState;
@@ -23,5 +26,23 @@ describe('Store', () => {
     };
     const state = store.getState();
     expect(state).toEqual(expectedState);
+  });
+  test('set token', () => {
+    expect(() => { store.token = null; }).toThrowError('Token is required');
+    const token = 'xxxxxxx';
+    store.token = token;
+    const expectedState = { ...initialState, token };
+    const state = store.getState();
+    expect(state).toEqual(expectedState);
+    expect(store.token).toEqual(token);
+  });
+  test('set public key', () => {
+    expect(() => { store.publicKey = null; }).toThrowError('Public key is required');
+    const publicKey = 'xxxxxx-xxxxx';
+    store.publicKey = publicKey;
+    const expectedState = { ...initialState, publicKey };
+    const state = store.getState();
+    expect(state).toEqual(expectedState);
+    expect(store.publicKey).toEqual(publicKey);
   });
 });

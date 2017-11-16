@@ -1,3 +1,7 @@
+export function userAgent() {
+  return navigator ? navigator.userAgent : null;
+}
+
 export function getCodeFromUrl(url) {
   try {
     return url.match(/([^/]*)\/*$/)[1];
