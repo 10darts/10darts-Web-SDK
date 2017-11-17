@@ -6,6 +6,7 @@ const initialState = {
   device: null,
   autosubscribe: false,
   debug: false,
+  lastAccess: null,
 };
 describe('Store', () => {
   afterEach(() => {

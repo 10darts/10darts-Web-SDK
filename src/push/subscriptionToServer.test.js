@@ -1,5 +1,5 @@
 import fetchMock from 'fetch-mock';
-import store from '../utils/store';
+import { store } from '../utils';
 import subscriptionToServer from './subscriptionToServer';
 
 describe('Subscription to Server', () => {
@@ -21,13 +21,7 @@ describe('Subscription to Server', () => {
     const { endpoint, p256dh, auth } = expectedBody;
     const PushSubscription = {
       toJSON() {
-        return {
-          endpoint,
-          keys: {
-            p256dh,
-            auth,
-          },
-        };
+        return { endpoint, keys: { p256dh, auth } };
       },
     };
     subscriptionToServer(PushSubscription);

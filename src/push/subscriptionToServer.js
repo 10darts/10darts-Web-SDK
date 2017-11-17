@@ -1,15 +1,13 @@
-import getDeviceCode from '../devices/getDeviceCode';
-import { post } from '../utils/api';
+import PushSubscriptionToSubscription from './PushSubscriptionToSubscription';
+import { post, store } from '../utils';
 
-export default function (subscription, deviceCode = getDeviceCode()) {
+export default function (PushSubscription, deviceCode = store.device) {
   const url = '/platforms/web/subscriptions/';
   const device = `/api/v1/devices/${deviceCode}/`;
-  const { endpoint, keys: { p256dh }, keys: { auth } } = subscription.toJSON();
+  const subscription = PushSubscriptionToSubscription(PushSubscription);
   const payload = {
     device,
-    endpoint,
-    p256dh,
-    auth,
+    ...subscription,
   };
   return post(url, payload);
 }

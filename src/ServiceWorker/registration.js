@@ -1,21 +1,18 @@
-let registration;
+import { logger } from '../utils';
+
 export default function () {
-  return new Promise((resolve) => {
-    if (registration) {
-      console.log('You are registered');
-      resolve(registration);
-    }
+  return new Promise((resolve, reject) => {
     if ('serviceWorker' in navigator && 'PushManager' in window) {
-      console.log('Sevice Worker and Push is supported');
-      navigator.serviceWorker.register('/10dartsServiceWorker.js')
-        .then((swRegistration) => {
-          console.log('Service Worker is registered', swRegistration);
-          registration = swRegistration;
-          resolve(swRegistration);
+      logger('Sevice Worker and Push is supported');
+      navigator.serviceWorker
+        .register('/10dartsServiceWorker.js', { scope: '/' })
+        .then((registration) => {
+          logger('Service Worker is registered', registration);
+          resolve(registration);
         })
-        .catch(error => console.log('Service Worker Error', error));
+        .catch(error => logger('Service Worker Error', error));
     } else {
-      console.warn('Push messaging is not supported');
+      reject(new Error('Push messaging is not supported'));
     }
   });
 }

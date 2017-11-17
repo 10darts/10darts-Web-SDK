@@ -55,6 +55,7 @@
       token: '<%= process.env.TOKEN %>',
       publicKey: '<%= process.env.APPLICATION_KEY %>',
       autosubscribe: true,
+      debug: true,
     });
     document.querySelector('#deviceCode').textContent = Tendarts.getDeviceCode();
     document.querySelector('#personaCode').textContent = Tendarts.getPersonaCode();

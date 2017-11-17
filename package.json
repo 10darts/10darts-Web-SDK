@@ -38,6 +38,7 @@
     "fetch-mock": "^5.13.1",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^21.2.1",
+    "jest-localstorage-mock": "^2.1.0",
     "regenerator-runtime": "^0.11.0",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "webpack": "^3.6.0",
@@ -47,5 +48,8 @@
   "dependencies": {
     "randomatic": "^1.1.7",
     "whatwg-fetch": "^2.0.3"
+  },
+  "jest": {
+    "setupFiles": ["jest-localstorage-mock"]
   }
 }

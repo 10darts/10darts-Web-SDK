@@ -1,35 +1,27 @@
 import randomize from 'randomatic';
-import navigatorLanguage from '../utils/navigatorLanguage';
-import { getCodeFromUrl, userAgent } from '../utils/helpers';
-import { post } from '../utils/api';
-import {
-  DEVICE,
-  PERSONA,
-  LAST_ACCESS,
-  CREATE_USER_EVENT,
-} from '../configuration';
+import PushSubscriptionToSubscription from '../push/PushSubscriptionToSubscription';
+import { store, post, userAgent, navigatorLanguage } from '../utils';
 
-export default function () {
+export default function (PushSubscription) {
+  if (!PushSubscription) { throw new Error('You need a subscription to create device'); }
+  const url = '/devices/';
   const model = userAgent();
   const language = navigatorLanguage();
+  const subscription = PushSubscriptionToSubscription(PushSubscription);
   const data = {
     platform: 'web',
     token: randomize('*', 30),
     disabled: true,
     model,
     language,
+    web_subscription: subscription,
   };
-  const url = '/devices/';
   return post(url, data).then((res) => {
     if (res.ok) { return res.json(); }
     throw res;
-  }).then(({ code, persona }) => {
-    const personaCode = getCodeFromUrl(persona);
-    localStorage.setItem(DEVICE, code);
-    localStorage.setItem(PERSONA, personaCode);
-    localStorage.setItem(LAST_ACCESS, Date.now());
-    const event = new Event(CREATE_USER_EVENT);
-    document.dispatchEvent(event);
+  }).then(({ code }) => {
+    store.device = code;
+    store.lastAccess = Date.now();
   }).catch((res) => {
     if (res.status === 400) {
       return res.json().then(errors => Promise.reject(errors));

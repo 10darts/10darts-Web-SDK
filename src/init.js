@@ -11,8 +11,8 @@ export default function init(config) {
   } = config;
   store.token = token;
   store.publicKey = publicKey;
-  registerServiceWorker();
   store.setState({ debug });
+  registerServiceWorker();
   if (autosubscribe) {
     subscribe();
   }
