@@ -1,4 +1,4 @@
-import getToken from './getToken';
+import store from './store';
 import { URL_API_V1 } from '../configuration';
 
 function makeHeaders(token) {
@@ -8,7 +8,7 @@ function makeHeaders(token) {
   };
 }
 
-export function get(url, token = getToken()) {
+export function get(url, token = store.token) {
   const headers = makeHeaders(token);
   return fetch(`${URL_API_V1}${url}`, {
     method: 'GET',
@@ -16,7 +16,7 @@ export function get(url, token = getToken()) {
   });
 }
 
-export function post(url, data = {}, token = getToken()) {
+export function post(url, data = {}, token = store.token) {
   const headers = makeHeaders(token);
   return fetch(`${URL_API_V1}${url}`, {
     method: 'POST',

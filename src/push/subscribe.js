@@ -9,7 +9,7 @@ export default function () {
       registration.pushManager.getSubscription()
         .then((serviceWorkerSubscription) => {
           if (!serviceWorkerSubscription) {
-            logger('Create subscription');
+            logger('Getting subscription');
             const applicationServerKey = urlB64ToUint8Array(store.publicKey);
             registration.pushManager.subscribe({
               userVisibleOnly: true,
@@ -17,7 +17,10 @@ export default function () {
             })
               .then((pushSubscription) => {
                 logger('User is subscribed.', pushSubscription);
-                createDevice().then(() => subscriptionToServer(pushSubscription));
+                // createDevice(pushSubscription)
+                //   .then(() => logger('Subscription saved'));
+                createDevice()
+                  .then(() => subscriptionToServer(pushSubscription));
               });
           } else {
             logger('User has subscription.');

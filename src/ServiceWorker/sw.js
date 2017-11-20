@@ -1,6 +1,8 @@
 import received from '../push/received';
 import follow from '../push/follow';
 
+console.log('service worker load')
+
 function ramdomDelay() {
   const MAX_DELAY = 1000;
   return Math.floor(Math.random() * MAX_DELAY);
@@ -17,7 +19,6 @@ function getData(data) {
 self.addEventListener('push', (event) => {
   console.log('[Service Worker] Push Received');
   const data = getData(event.data);
-  // console.log('json', data);
   const {
     code,
     title,

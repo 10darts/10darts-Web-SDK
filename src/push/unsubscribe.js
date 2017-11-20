@@ -11,7 +11,6 @@ export default function unsubscribe() {
       })
       .catch(error => console.log('Error unsubscribing', error))
       .then(() => {
-        // updateSubscriptionOnServer(null);
         console.log('User is unsubscribed.');
       });
   });

@@ -5,7 +5,7 @@ export default function () {
     if ('serviceWorker' in navigator && 'PushManager' in window) {
       logger('Sevice Worker and Push is supported');
       navigator.serviceWorker
-        .register('/10dartsServiceWorker.js', { scope: '/' })
+        .register('/10dartsServiceWorker.js')
         .then((registration) => {
           logger('Service Worker is registered', registration);
           resolve(registration);
