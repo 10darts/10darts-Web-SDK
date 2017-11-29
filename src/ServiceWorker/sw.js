@@ -1,8 +1,6 @@
 import received from '../push/received';
 import follow from '../push/follow';
 
-console.log('service worker load')
-
 function ramdomDelay() {
   const MAX_DELAY = 1000;
   return Math.floor(Math.random() * MAX_DELAY);

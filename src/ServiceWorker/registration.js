@@ -1,11 +1,13 @@
 import { logger } from '../utils';
 
+const scope = '/';
+
 export default function () {
   return new Promise((resolve, reject) => {
     if ('serviceWorker' in navigator && 'PushManager' in window) {
       logger('Sevice Worker and Push is supported');
       navigator.serviceWorker
-        .register('/10dartsServiceWorker.js')
+        .register('/10dartsServiceWorker.js', { scope })
         .then((registration) => {
           logger('Service Worker is registered', registration);
           resolve(registration);

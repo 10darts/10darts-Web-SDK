@@ -48,32 +48,33 @@
       </div>
     </div>
   </section>
-  <script type="text/javascript" src="10dartsSDK.js"></script>
   <script>
-    var Tendarts = window.Tendarts || {};
-    Tendarts.init({
-      token: '<%= process.env.TOKEN %>',
-      publicKey: '<%= process.env.APPLICATION_KEY %>',
-      autosubscribe: true,
-      debug: true,
-    });
-    console.log('SDK state', Tendarts.getState());
-    // document.querySelector('#deviceCode').textContent = Tendarts.getDeviceCode();
-    // document.querySelector('#personaCode').textContent = Tendarts.getPersonaCode();
-
-    document.addEventListener('10DARTS_CREATE_USER', function() {
+    window.onload = function() {
+      var Tendarts = window.Tendarts || {};
+      Tendarts.init({
+        token: '<%= process.env.TOKEN %>',
+        publicKey: '<%= process.env.APPLICATION_KEY %>',
+        autosubscribe: true,
+        debug: true,
+      });
       console.log('SDK state', Tendarts.getState());
       // document.querySelector('#deviceCode').textContent = Tendarts.getDeviceCode();
       // document.querySelector('#personaCode').textContent = Tendarts.getPersonaCode();
-    }, false);
 
-    document.querySelector('#formClientData').onsubmit = (event) => {
-      event.preventDefault();
-      Tendarts.linkDeviceClientData(document.querySelector('#clientData').value)
-        .then(res => {
-          document.querySelector('#personaCode').textContent = res.persona;
-        });
-    };
+      document.addEventListener('10DARTS_CREATE_USER', function() {
+        console.log('SDK state', Tendarts.getState());
+        // document.querySelector('#deviceCode').textContent = Tendarts.getDeviceCode();
+        // document.querySelector('#personaCode').textContent = Tendarts.getPersonaCode();
+      }, false);
+
+      document.querySelector('#formClientData').onsubmit = (event) => {
+        event.preventDefault();
+        Tendarts.linkDeviceClientData(document.querySelector('#clientData').value)
+          .then(res => {
+            document.querySelector('#personaCode').textContent = res.persona;
+          });
+      }; 
+    }
   </script>
 </body>
 </html>

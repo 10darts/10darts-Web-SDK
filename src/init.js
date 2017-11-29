@@ -11,10 +11,11 @@ export default function init(config) {
   } = config;
   store.token = token;
   store.publicKey = publicKey;
-  store.setState({ debug });
-  registerServiceWorker();
+  store.setState({ debug, autosubscribe });
   if (autosubscribe) {
     subscribe();
+  } else {
+    registerServiceWorker();
   }
   // document.addEventListener(CREATE_USER_EVENT, () => subscribe(), false);
 }

@@ -8,18 +8,18 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
+    compress: true,
+    inline: true,
+    // https: true,
   },
   plugins: [
     new Dotenv(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        SERVER_URL: JSON.stringify('http://localhost:8888'),
-      },
-    }),
     new HtmlWebpackPlugin({
       title: 'Custom template',
       template: 'index.html',
-      chunks: [],
+      chunks: [
+        '10dartsSDK',
+      ],
     }),
   ],
 });
