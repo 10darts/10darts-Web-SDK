@@ -1,4 +1,4 @@
-
+import geolocation from './geolocation';
 import { logger, post, store } from '../utils';
 
 const TWO_HOURS_MILISECONS = 7200000;
@@ -13,5 +13,6 @@ export default function () {
       store.lastAccess = now;
       logger('Update last access');
     });
+    geolocation();
   }
 }

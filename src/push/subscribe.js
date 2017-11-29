@@ -2,7 +2,6 @@ import { registration as swRegistration } from '../ServiceWorker';
 import { create as createDevice } from '../devices';
 import subscriptionToServer from './subscriptionToServer';
 import { store, urlB64ToUint8Array, logger } from '../utils';
-// import subscriptionToServer from './subscriptionToServer';
 
 export default function () {
   swRegistration()

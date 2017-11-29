@@ -1,5 +1,5 @@
 import fetchMock from 'fetch-mock';
-import { get, post } from './api';
+import { get, post, patch } from './api';
 
 describe('API base calls', () => {
   afterEach(() => {
@@ -16,6 +16,12 @@ describe('API base calls', () => {
     fetchMock.post('*', 201, {});
     const token = 'XXXXX';
     post('/', {}, token);
+    expect(fetchMock.lastOptions().headers.Authorization).toBe(`AppToken ${token}`);
+  });
+  test('PATCH should have Token XXXXXXX', () => {
+    fetchMock.patch('*', 201, {});
+    const token = 'XXXXX';
+    patch('/', {}, token);
     expect(fetchMock.lastOptions().headers.Authorization).toBe(`AppToken ${token}`);
   });
 });

@@ -24,3 +24,12 @@ export function post(url, data = {}, token = store.token) {
     body: JSON.stringify(data),
   });
 }
+
+export function patch(url, data = {}, token = store.token) {
+  const headers = makeHeaders(token);
+  return fetch(`${URL_API_V1}${url}`, {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify(data),
+  });
+}

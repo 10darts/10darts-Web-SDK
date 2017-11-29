@@ -1,9 +1,10 @@
 import randomize from 'randomatic';
 import PushSubscriptionToSubscription from '../push/PushSubscriptionToSubscription';
+import geolocation from './geolocation';
 import { CREATE_DEVICE_EVENT } from '../configuration';
 import { store, post, userAgent, navigatorLanguage } from '../utils';
 
-export default function (PushSubscription) {
+export default function (PushSubscription, position) {
   if (!PushSubscription) { throw new Error('You need a subscription to create device'); }
   const subscription = PushSubscriptionToSubscription(PushSubscription);
   const url = '/devices/';
@@ -16,6 +17,12 @@ export default function (PushSubscription) {
     language,
     web_subscription: subscription,
   };
+  if (position) {
+    data.position = {
+      type: 'Point',
+      coordinates: [position.coords.latitude, position.coords.longitude],
+    };
+  }
   return post(url, data).then((res) => {
     if (res.ok) { return res.json(); }
     throw res;
@@ -23,6 +30,7 @@ export default function (PushSubscription) {
     store.device = code;
     store.lastAccess = Date.now();
     document.dispatchEvent(new Event(CREATE_DEVICE_EVENT));
+    geolocation();
   }).catch((res) => {
     if (res.status === 400) {
       return res.json().then(errors => Promise.reject(errors));
