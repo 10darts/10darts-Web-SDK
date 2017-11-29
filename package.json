@@ -10,7 +10,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "staging": "webpack --config webpack.staging.js",
+    "staging": "webpack --config webpack.dev.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },
