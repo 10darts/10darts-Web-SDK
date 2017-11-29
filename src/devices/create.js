@@ -22,8 +22,7 @@ export default function (PushSubscription) {
   }).then(({ code }) => {
     store.device = code;
     store.lastAccess = Date.now();
-    const event = new Event(CREATE_DEVICE_EVENT);
-    document.dispatchEvent(event);
+    document.dispatchEvent(new Event(CREATE_DEVICE_EVENT));
   }).catch((res) => {
     if (res.status === 400) {
       return res.json().then(errors => Promise.reject(errors));

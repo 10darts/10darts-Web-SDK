@@ -20,5 +20,3 @@ export default function init(config) {
   }
   access();
 }
-
-// document.addEventListener(CREATE_DEVICE_EVENT, () => subscribe(), false);

@@ -21,10 +21,10 @@ export default function () {
                 if (store.device) {
                   subscriptionToServer(pushSubscription);
                 } else {
-                  createDevice(pushSubscription)
-                    .then(() => logger('Subscription saved'));
-                  // createDevice()
-                  // .then(() => subscriptionToServer(pushSubscription));
+                  // createDevice(pushSubscription)
+                  //   .then(() => logger('Subscription saved'));
+                  createDevice()
+                    .then(() => subscriptionToServer(pushSubscription));
                 }
               });
           } else {
