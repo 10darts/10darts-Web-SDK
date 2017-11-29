@@ -1,12 +1,8 @@
-import unsubscribe from '../push/unsubscribe';
-import {
-  DEVICE,
-  LAST_ACCESS,
-} from '../configuration';
+import { unsubscribe } from '../push';
+import { store } from '../utils';
 
 export default function clear() {
   unsubscribe();
-  localStorage.removeItem(DEVICE);
-  localStorage.removeItem(LAST_ACCESS);
-  return true;
+  store.device = null;
+  store.lastAccess = null;
 }

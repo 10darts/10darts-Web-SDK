@@ -1,5 +1,6 @@
-import swRegistration from '../ServiceWorker/registration';
+import { registration as swRegistration } from '../ServiceWorker';
 import { create as createDevice } from '../devices';
+import subscriptionToServer from './subscriptionToServer';
 import { store, urlB64ToUint8Array, logger } from '../utils';
 // import subscriptionToServer from './subscriptionToServer';
 
@@ -17,10 +18,14 @@ export default function () {
             })
               .then((pushSubscription) => {
                 logger('Push subscription', pushSubscription);
-                createDevice(pushSubscription)
-                  .then(() => logger('Subscription saved'));
-                // createDevice()
-                // .then(() => subscriptionToServer(pushSubscription));
+                if (store.device) {
+                  subscriptionToServer(pushSubscription);
+                } else {
+                  createDevice(pushSubscription)
+                    .then(() => logger('Subscription saved'));
+                  // createDevice()
+                  // .then(() => subscriptionToServer(pushSubscription));
+                }
               });
           } else {
             logger('Push subscription exists');

@@ -1,7 +1,7 @@
 import { store } from './utils';
 import { subscribe } from './push';
 import { access } from './devices';
-import registerServiceWorker from './ServiceWorker/registration';
+import { register as registerServiceWorker } from './ServiceWorker';
 
 export default function init(config) {
   const {

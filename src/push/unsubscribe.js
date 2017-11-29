@@ -1,4 +1,5 @@
-import swRegistration from '../ServiceWorker/registration';
+import { registration as swRegistration } from '../ServiceWorker';
+import { logger } from '../utils';
 
 export default function unsubscribe() {
   swRegistration().then((registration) => {
@@ -9,9 +10,9 @@ export default function unsubscribe() {
         }
         return null;
       })
-      .catch(error => console.log('Error unsubscribing', error))
+      .catch(error => logger('Error unsubscribing', error))
       .then(() => {
-        console.log('User is unsubscribed.');
+        logger('User is unsubscribed.');
       });
   });
 }

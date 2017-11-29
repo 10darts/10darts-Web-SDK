@@ -1,5 +1,5 @@
 import PushSubscriptionToSubscription from './PushSubscriptionToSubscription';
-import { post, store } from '../utils';
+import { post, store, logger } from '../utils';
 
 export default function (PushSubscription, deviceCode = store.device) {
   const url = '/platforms/web/subscriptions/';
@@ -9,5 +9,5 @@ export default function (PushSubscription, deviceCode = store.device) {
     device,
     ...subscription,
   };
-  return post(url, payload);
+  return post(url, payload).then(() => logger('Subscription saved'));
 }
