@@ -1,5 +1,6 @@
 import { store } from './utils';
 import { subscribe } from './push';
+import { access } from './devices';
 import registerServiceWorker from './ServiceWorker/registration';
 
 export default function init(config) {
@@ -17,5 +18,6 @@ export default function init(config) {
   } else {
     registerServiceWorker();
   }
+  access();
   // document.addEventListener(CREATE_USER_EVENT, () => subscribe(), false);
 }

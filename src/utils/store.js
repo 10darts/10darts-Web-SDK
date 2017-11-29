@@ -3,11 +3,11 @@ import { DEVICE, LAST_ACCESS } from '../configuration';
 function createStore() {
   let currentState = {
     device: typeof localStorage !== 'undefined' ? localStorage.getItem(DEVICE) : null,
+    lastAccess: typeof localStorage !== 'undefined' ? localStorage.getItem(LAST_ACCESS) : null,
     token: null,
     publicKey: null,
     autosubscribe: false,
     debug: false,
-    lastAccess: null,
   };
 
   return {

@@ -1,15 +1,17 @@
-import getDeviceCode from './getDeviceCode';
-import { post } from '../utils/api';
-import {
-  LAST_ACCESS,
-} from '../configuration';
+
+import { logger, post, store } from '../utils';
 
 const TWO_HOURS_MILISECONS = 7200000;
 
 export default function () {
-  const lastAccess = localStorage.getItem(LAST_ACCESS);
-  if (lastAccess && lastAccess > (Date.now() - TWO_HOURS_MILISECONS)) { return; }
-  const device = getDeviceCode();
-  const url = `/devices/${device}/access/`;
-  post(url).then(() => localStorage.setItem(LAST_ACCESS, Date.now()));
+  const now = Date.now();
+  const hasDevice = store.device !== null;
+  const registerAccess = store.lastAccess && store.lastAccess < (now - TWO_HOURS_MILISECONS);
+  if (hasDevice && registerAccess) {
+    const url = `/devices/${store.device}/access/`;
+    post(url).then(() => {
+      store.lastAccess = now;
+      logger('Update last access');
+    });
+  }
 }
