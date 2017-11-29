@@ -12,7 +12,7 @@
     <div class="container">
       <div class="columns">
         <div class="column">
-          <h1 class="title">10darts</h1>
+          <h1 class="title">10darts SDK</h1>
           <div class="notification is-danger errors" style="display: none"></div>
           <h2 class="title is-4">App info</h2>
           <table class="table is-fullwidth">
@@ -22,12 +22,8 @@
                 <td id="deviceCode"></td>
               </tr>
               <tr>
-                <th>Persona</th>
-                <td id="personaCode"></td>
-              </tr>
-              <tr>
-                <th>Push subscribed:</th>
-                <td></td>
+                <th>Last Access</th>
+                <td id="lastAccess"></td>
               </tr>
             </tbody>
           </table>
@@ -57,22 +53,18 @@
         autosubscribe: true,
         debug: true,
       });
-      console.log('SDK state', Tendarts.getState());
-      // document.querySelector('#deviceCode').textContent = Tendarts.getDeviceCode();
-      // document.querySelector('#personaCode').textContent = Tendarts.getPersonaCode();
+      var state = Tendarts.getState();
+      document.querySelector('#deviceCode').textContent = state.device;
+      document.querySelector('#lastAccess').textContent = state.lastAccess;
 
-      document.addEventListener('10DARTS_CREATE_USER', function() {
-        console.log('SDK state', Tendarts.getState());
-        // document.querySelector('#deviceCode').textContent = Tendarts.getDeviceCode();
-        // document.querySelector('#personaCode').textContent = Tendarts.getPersonaCode();
+      document.addEventListener('CREATE_DEVICE_EVENT', function() {
+        document.querySelector('#deviceCode').textContent = state.device;
+        document.querySelector('#lastAccess').textContent = state.lastAccess;
       }, false);
 
       document.querySelector('#formClientData').onsubmit = (event) => {
         event.preventDefault();
-        Tendarts.linkDeviceClientData(document.querySelector('#clientData').value)
-          .then(res => {
-            document.querySelector('#personaCode').textContent = res.persona;
-          });
+        Tendarts.linkDeviceClientData(document.querySelector('#clientData').value);
       }; 
     }
   </script>

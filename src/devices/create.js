@@ -1,5 +1,6 @@
 import randomize from 'randomatic';
 import PushSubscriptionToSubscription from '../push/PushSubscriptionToSubscription';
+import { CREATE_DEVICE_EVENT } from '../configuration';
 import { store, post, userAgent, navigatorLanguage } from '../utils';
 
 export default function (PushSubscription) {
@@ -21,6 +22,8 @@ export default function (PushSubscription) {
   }).then(({ code }) => {
     store.device = code;
     store.lastAccess = Date.now();
+    const event = new Event(CREATE_DEVICE_EVENT);
+    document.dispatchEvent(event);
   }).catch((res) => {
     if (res.status === 400) {
       return res.json().then(errors => Promise.reject(errors));

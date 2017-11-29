@@ -19,5 +19,6 @@ export default function init(config) {
     registerServiceWorker();
   }
   access();
-  // document.addEventListener(CREATE_USER_EVENT, () => subscribe(), false);
 }
+
+// document.addEventListener(CREATE_DEVICE_EVENT, () => subscribe(), false);

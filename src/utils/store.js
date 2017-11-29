@@ -30,12 +30,20 @@ function createStore() {
     get publicKey() { return currentState.publicKey; },
     set device(device) {
       currentState.device = device;
-      localStorage.setItem(DEVICE, device);
+      if (device === null || device === undefined) {
+        localStorage.removeItem(DEVICE);
+      } else {
+        localStorage.setItem(DEVICE, device);
+      }
     },
     get device() { return currentState.device; },
     set lastAccess(lastAccess) {
       currentState.lastAccess = lastAccess;
-      localStorage.setItem(LAST_ACCESS, lastAccess);
+      if (lastAccess === null || lastAccess === undefined) {
+        localStorage.removeItem(LAST_ACCESS);
+      } else {
+        localStorage.setItem(LAST_ACCESS, lastAccess);
+      }
     },
     get lastAccess() { return currentState.lastAccess; },
   };
