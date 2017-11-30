@@ -1,8 +1,8 @@
 import { logger, store, patch } from '../utils';
 
 export default function geolocation(device = store.device) {
-  logger('Getting geolocation');
-  if ('geolocation' in navigator) {
+  if (store.geolocation && 'geolocation' in navigator) {
+    logger('Getting geolocation');
     navigator.geolocation.getCurrentPosition(({ coords }) => {
       logger('Geolocation', coords);
       const position = {

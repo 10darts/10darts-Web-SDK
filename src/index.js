@@ -1,8 +1,7 @@
 import init from './init';
-import linkDeviceClientData from './devices/linkClientData';
-import subscribe from './push/subscribe';
-import unsubscribe from './push/unsubscribe';
-import registration from './ServiceWorker/registration';
+import { linkDeviceClientData, geolocation } from './devices';
+import { subscribe, unsubscribe } from './push';
+import { registration } from './ServiceWorker';
 import { store, clear } from './utils';
 
 window.Tendarts = {
@@ -12,6 +11,7 @@ window.Tendarts = {
   unsubscribe,
   registration,
   clear,
+  geolocation,
   getState() {
     return store.getState();
   },

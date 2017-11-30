@@ -7,6 +7,7 @@ function createStore() {
     token: null,
     publicKey: null,
     autosubscribe: false,
+    geolocation: false,
     debug: false,
   };
 
@@ -16,6 +17,9 @@ function createStore() {
     },
     getState() {
       return currentState;
+    },
+    get geolocation() {
+      return currentState.geolocation;
     },
     get debug() { return currentState.debug; },
     set token(token) {

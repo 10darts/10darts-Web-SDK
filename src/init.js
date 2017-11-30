@@ -8,11 +8,12 @@ export default function init(config) {
     token,
     publicKey,
     autosubscribe = false,
+    geolocation = false,
     debug = false,
   } = config;
   store.token = token;
   store.publicKey = publicKey;
-  store.setState({ debug, autosubscribe });
+  store.setState({ debug, autosubscribe, geolocation });
   if (autosubscribe) {
     subscribe();
   } else {

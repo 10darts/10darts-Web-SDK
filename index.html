@@ -52,14 +52,17 @@
         publicKey: '<%= process.env.APPLICATION_KEY %>',
         autosubscribe: true,
         debug: true,
+        geolocation: true,
       });
       var state = Tendarts.getState();
       document.querySelector('#deviceCode').textContent = state.device;
-      document.querySelector('#lastAccess').textContent = state.lastAccess;
+      if(state.lastAccess) {
+        document.querySelector('#lastAccess').textContent = Date(state.lastAccess);
+      }
 
       document.addEventListener('CREATE_DEVICE_EVENT', function() {
         document.querySelector('#deviceCode').textContent = state.device;
-        document.querySelector('#lastAccess').textContent = state.lastAccess;
+        document.querySelector('#lastAccess').textContent = Date(state.lastAccess);
       }, false);
 
       document.querySelector('#formClientData').onsubmit = (event) => {
