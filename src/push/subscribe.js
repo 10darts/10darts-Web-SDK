@@ -21,7 +21,6 @@ export default function () {
                   subscriptionToServer(pushSubscription);
                 } else {
                   createDevice(pushSubscription)
-                    .then(() => subscriptionToServer(pushSubscription))
                     .then(() => logger('Subscription saved'));
                 }
               });
