@@ -9,6 +9,7 @@ function createStore() {
     autosubscribe: false,
     geolocation: false,
     debug: false,
+    key: null,
   };
 
   return {
@@ -50,6 +51,15 @@ function createStore() {
       }
     },
     get lastAccess() { return currentState.lastAccess; },
+    get key() { return currentState.key; },
+    set key(key) {
+      if (typeof key === 'string') {
+        currentState.key = { label: key };
+      } else {
+        if (!key.label || !key.value) { throw new Error('key value need a label and value'); }
+        currentState.key = key;
+      }
+    },
   };
 }
 
