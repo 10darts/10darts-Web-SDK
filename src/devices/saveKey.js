@@ -1,6 +1,6 @@
 import { store, logger, post } from '../utils';
 
-export default function saveKey(label, value, kind = 3) {
+export default function saveKey(label, value, kind = 2) {
   const data = {
     device: `/api/v1/devices/${store.device}/`,
     key: { label },
