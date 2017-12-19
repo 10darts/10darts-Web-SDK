@@ -1,5 +1,5 @@
 import init from './init';
-import { linkDeviceClientData, geolocation, saveKey } from './devices';
+import { linkDeviceClientData, geolocation, saveKey, isRegistered } from './devices';
 import { subscribe, unsubscribe } from './push';
 import { registration } from './ServiceWorker';
 import { store, clear } from './utils';
@@ -13,6 +13,7 @@ window.Tendarts = {
   clear,
   saveKey,
   geolocation,
+  isRegistered,
   getState() {
     return store.getState();
   },
