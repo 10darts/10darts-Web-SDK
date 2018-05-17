@@ -9,6 +9,7 @@ function createStore() {
     autosubscribe: false,
     geolocation: false,
     debug: false,
+    scope: '/',
     key: null,
   };
 
@@ -22,17 +23,30 @@ function createStore() {
     get geolocation() {
       return currentState.geolocation;
     },
-    get debug() { return currentState.debug; },
+    get debug() {
+      return currentState.debug;
+    },
+    get scope() {
+      return currentState.scope;
+    },
     set token(token) {
-      if (!token) { throw new Error('Token is required'); }
+      if (!token) {
+        throw new Error('Token is required');
+      }
       currentState.token = token;
     },
-    get token() { return currentState.token; },
+    get token() {
+      return currentState.token;
+    },
     set publicKey(publicKey) {
-      if (!publicKey) { throw new Error('Public key is required'); }
+      if (!publicKey) {
+        throw new Error('Public key is required');
+      }
       currentState.publicKey = publicKey;
     },
-    get publicKey() { return currentState.publicKey; },
+    get publicKey() {
+      return currentState.publicKey;
+    },
     set device(device) {
       currentState.device = device;
       if (device === null || device === undefined) {
@@ -41,7 +55,9 @@ function createStore() {
         localStorage.setItem(DEVICE, device);
       }
     },
-    get device() { return currentState.device; },
+    get device() {
+      return currentState.device;
+    },
     set lastAccess(lastAccess) {
       currentState.lastAccess = lastAccess;
       if (lastAccess === null || lastAccess === undefined) {
@@ -50,13 +66,19 @@ function createStore() {
         localStorage.setItem(LAST_ACCESS, lastAccess);
       }
     },
-    get lastAccess() { return currentState.lastAccess; },
-    get key() { return currentState.key; },
+    get lastAccess() {
+      return currentState.lastAccess;
+    },
+    get key() {
+      return currentState.key;
+    },
     set key(key) {
       if (typeof key === 'string') {
         currentState.key = { label: key };
       } else {
-        if (!key.label || !key.value) { throw new Error('key value need a label and value'); }
+        if (!key.label || !key.value) {
+          throw new Error('key value need a label and value');
+        }
         currentState.key = key;
       }
     },

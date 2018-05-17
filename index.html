@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <title>10dats webpush</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css">
 </head>
+
 <body>
   <section class="section">
     <div class="container">
@@ -45,7 +47,7 @@
     </div>
   </section>
   <script>
-    window.onload = function() {
+    window.onload = function () {
       var Tendarts = window.Tendarts || {};
       Tendarts.init({
         token: '<%= process.env.TOKEN %>',
@@ -53,15 +55,15 @@
         autosubscribe: true,
         debug: true,
         geolocation: true,
-        key: { label: 'hello', value: "world"},
+        key: { label: 'hello', value: "world" },
       });
       var state = Tendarts.getState();
       document.querySelector('#deviceCode').textContent = state.device;
-      if(state.lastAccess) {
+      if (state.lastAccess) {
         document.querySelector('#lastAccess').textContent = Date(state.lastAccess);
       }
 
-      document.addEventListener('CREATE_DEVICE_EVENT', function() {
+      document.addEventListener('CREATE_DEVICE_EVENT', function () {
         document.querySelector('#deviceCode').textContent = state.device;
         document.querySelector('#lastAccess').textContent = Date(state.lastAccess);
       }, false);
@@ -69,8 +71,9 @@
       document.querySelector('#formClientData').onsubmit = (event) => {
         event.preventDefault();
         Tendarts.linkDeviceClientData(document.querySelector('#clientData').value);
-      }; 
+      };
     }
   </script>
 </body>
+
 </html>

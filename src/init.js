@@ -10,6 +10,7 @@ export default function init(config) {
     autosubscribe = false,
     geolocation = false,
     debug = false,
+    scope = '/',
     key,
   } = config;
   store.token = token;
@@ -17,7 +18,12 @@ export default function init(config) {
   if (key) {
     store.key = key;
   }
-  store.setState({ debug, autosubscribe, geolocation });
+  store.setState({
+    debug,
+    scope,
+    autosubscribe,
+    geolocation,
+  });
   if (autosubscribe) {
     subscribe();
   } else {
