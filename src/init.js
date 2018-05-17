@@ -11,6 +11,7 @@ export default function init(config) {
     geolocation = false,
     debug = false,
     scope = '/',
+    serviceWorkerPath = '/',
     key,
   } = config;
   store.token = token;
@@ -21,6 +22,7 @@ export default function init(config) {
   store.setState({
     debug,
     scope,
+    serviceWorkerPath,
     autosubscribe,
     geolocation,
   });

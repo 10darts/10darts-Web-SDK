@@ -10,6 +10,7 @@ function createStore() {
     geolocation: false,
     debug: false,
     scope: '/',
+    serviceWorkerPath: '/',
     key: null,
   };
 
@@ -28,6 +29,9 @@ function createStore() {
     },
     get scope() {
       return currentState.scope;
+    },
+    get serviceWorkerPath() {
+      return currentState.serviceWorkerPath;
     },
     set token(token) {
       if (!token) {

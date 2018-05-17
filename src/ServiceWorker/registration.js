@@ -4,10 +4,11 @@ export default function () {
   return new Promise((resolve, reject) => {
     if ('serviceWorker' in navigator && 'PushManager' in window) {
       logger('Sevice Worker and Push is supported');
-      const { scope } = store;
+      const { scope, serviceWorkerPath } = store;
       logger('Service Worker scope', scope);
+      const serviceWorkerRoute = `${serviceWorkerPath}10dartsServiceWorker.js`;
       navigator.serviceWorker
-        .register('/10dartsServiceWorker.js', { scope })
+        .register(serviceWorkerRoute, { scope })
         .then((registration) => {
           logger('Service Worker is registered', registration);
           resolve(registration);
