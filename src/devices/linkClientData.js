@@ -4,5 +4,10 @@ export default function linkDeviceClientData(clientData) {
   return post('/devices/links/', {
     device: `/api/v1/devices/${store.device}/`,
     client_data: clientData,
-  }).catch(error => logger(error));
+  })
+    .then(res => res.json())
+    .then((json) => {
+      store.perona = json.persona;
+    })
+    .catch(error => logger(error));
 }

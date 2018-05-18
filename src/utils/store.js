@@ -1,4 +1,4 @@
-import { DEVICE, LAST_ACCESS } from '../configuration';
+import { DEVICE, PERSONA, LAST_ACCESS } from '../configuration';
 
 function createStore() {
   let currentState = {
@@ -61,6 +61,17 @@ function createStore() {
     },
     get device() {
       return currentState.device;
+    },
+    set persona(persona) {
+      currentState.persona = persona;
+      if (persona === null || persona === undefined) {
+        localStorage.removeItem(PERSONA);
+      } else {
+        localStorage.setItem(PERSONA, persona);
+      }
+    },
+    get persona() {
+      return currentState.persona;
     },
     set lastAccess(lastAccess) {
       currentState.lastAccess = lastAccess;

@@ -1,5 +1,11 @@
 import init from './init';
-import { linkDeviceClientData, geolocation, saveKey, isRegistered } from './devices';
+import {
+  linkDeviceClientData,
+  geolocation,
+  saveKeyInDevice,
+  saveKeyInUser,
+  isRegistered,
+} from './devices';
 import { subscribe, unsubscribe } from './push';
 import { registration } from './ServiceWorker';
 import { store, clear } from './utils';
@@ -11,7 +17,8 @@ window.Tendarts = {
   unsubscribe,
   registration,
   clear,
-  saveKey,
+  saveKeyInDevice,
+  saveKeyInUser,
   geolocation,
   isRegistered,
   getState() {

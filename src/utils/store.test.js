@@ -2,12 +2,17 @@ import store from './store';
 
 const initialState = {
   publicKey: null,
+  key: null,
   token: null,
   device: null,
   autosubscribe: false,
+  geolocation: false,
   debug: false,
   lastAccess: null,
+  scope: '/',
+  serviceWorkerPath: '/',
 };
+
 describe('Store', () => {
   afterEach(() => {
     store.setState(initialState);
@@ -29,7 +34,9 @@ describe('Store', () => {
     expect(state).toEqual(expectedState);
   });
   test('set token', () => {
-    expect(() => { store.token = null; }).toThrowError('Token is required');
+    expect(() => {
+      store.token = null;
+    }).toThrowError('Token is required');
     const token = 'xxxxxxx';
     store.token = token;
     const expectedState = { ...initialState, token };
@@ -38,7 +45,9 @@ describe('Store', () => {
     expect(store.token).toEqual(token);
   });
   test('set public key', () => {
-    expect(() => { store.publicKey = null; }).toThrowError('Public key is required');
+    expect(() => {
+      store.publicKey = null;
+    }).toThrowError('Public key is required');
     const publicKey = 'xxxxxx-xxxxx';
     store.publicKey = publicKey;
     const expectedState = { ...initialState, publicKey };

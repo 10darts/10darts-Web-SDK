@@ -1,10 +1,10 @@
 import fetchMock from 'fetch-mock';
 import { store } from '../utils';
-import saveKey from './saveKey';
+import saveKeyInUser from './saveKeyInUser';
 
 describe('Create new key/value', () => {
   beforeEach(() => {
-    store.setState({ device: '1234' });
+    store.setState({ persona: 'https://10darts.com/api/v1/personas/1234/' });
     fetchMock.post('*', { status: 201 });
   });
   afterEach(() => {
@@ -14,16 +14,15 @@ describe('Create new key/value', () => {
   });
   test('create new tag', () => {
     const label = 'label';
-    return saveKey(label).then(() => {
+    return saveKeyInUser(label).then(() => {
       expect(fetchMock.called()).toBeTruthy();
-      expect(JSON.parse(fetchMock.lastOptions().body).key)
-        .toEqual({ label });
+      expect(JSON.parse(fetchMock.lastOptions().body).key).toEqual({ label });
     });
   });
   test('create new key/value', () => {
     const label = 'label';
     const value = 'value';
-    return saveKey(label, value).then(() => {
+    return saveKeyInUser(label, value).then(() => {
       expect(fetchMock.called()).toBeTruthy();
       const body = JSON.parse(fetchMock.lastOptions().body);
       expect(body.key).toEqual({ label });
@@ -36,7 +35,7 @@ describe('Create new key/value', () => {
     const value = 10;
     const kind = 1;
 
-    return saveKey(label, value, kind).then(() => {
+    return saveKeyInUser(label, value, kind).then(() => {
       expect(fetchMock.called()).toBeTruthy();
       const body = JSON.parse(fetchMock.lastOptions().body);
       expect(body.key).toEqual({ label });
