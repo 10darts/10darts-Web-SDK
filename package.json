@@ -1,8 +1,9 @@
 {
   "name": "10darts-web-sdk",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "release": "0.3",
-  "description": "10darts is a smart push notification platform. This SDK makes it easy to integrate your web with 10darts.",
+  "description":
+    "10darts is a smart push notification platform. This SDK makes it easy to integrate your web with 10darts.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/10darts/web-TendartsSDK.git"
@@ -14,9 +15,7 @@
     "test": "jest",
     "test:watch": "jest --watch"
   },
-  "keywords": [
-    "10darts"
-  ],
+  "keywords": ["10darts"],
   "author": "10darts Inc.",
   "license": "MIT",
   "bugs": {
@@ -50,8 +49,6 @@
     "whatwg-fetch": "^2.0.3"
   },
   "jest": {
-    "setupFiles": [
-      "jest-localstorage-mock"
-    ]
+    "setupFiles": ["jest-localstorage-mock"]
   }
 }
