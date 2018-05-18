@@ -56,6 +56,7 @@
         debug: true,
         geolocation: true,
         key: { label: 'hello', value: "world" },
+        cache: false,
       });
       var state = Tendarts.getState();
       document.querySelector('#deviceCode').textContent = state.device;

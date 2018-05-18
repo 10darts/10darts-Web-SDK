@@ -12,6 +12,7 @@ function createStore() {
     scope: '/',
     serviceWorkerPath: '/',
     key: null,
+    cache: true,
   };
 
   return {
@@ -26,6 +27,9 @@ function createStore() {
     },
     get debug() {
       return currentState.debug;
+    },
+    get cache() {
+      return currentState.cache;
     },
     get scope() {
       return currentState.scope;
@@ -53,10 +57,12 @@ function createStore() {
     },
     set device(device) {
       currentState.device = device;
-      if (device === null || device === undefined) {
-        localStorage.removeItem(DEVICE);
-      } else {
-        localStorage.setItem(DEVICE, device);
+      if (currentState.cache) {
+        if (device === null || device === undefined) {
+          localStorage.removeItem(DEVICE);
+        } else {
+          localStorage.setItem(DEVICE, device);
+        }
       }
     },
     get device() {
@@ -64,10 +70,12 @@ function createStore() {
     },
     set persona(persona) {
       currentState.persona = persona;
-      if (persona === null || persona === undefined) {
-        localStorage.removeItem(PERSONA);
-      } else {
-        localStorage.setItem(PERSONA, persona);
+      if (currentState.cache) {
+        if (persona === null || persona === undefined) {
+          localStorage.removeItem(PERSONA);
+        } else {
+          localStorage.setItem(PERSONA, persona);
+        }
       }
     },
     get persona() {

@@ -11,6 +11,7 @@ const initialState = {
   lastAccess: null,
   scope: '/',
   serviceWorkerPath: '/',
+  cache: true,
 };
 
 describe('Store', () => {

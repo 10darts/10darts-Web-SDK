@@ -12,6 +12,7 @@ export default function init(config) {
     debug = false,
     scope = '/',
     serviceWorkerPath = '/',
+    cache,
     key,
   } = config;
   store.token = token;
@@ -21,6 +22,7 @@ export default function init(config) {
   }
   store.setState({
     debug,
+    cache,
     scope,
     serviceWorkerPath,
     autosubscribe,
