@@ -33,5 +33,7 @@ export default function init(config) {
   } else {
     registerServiceWorker();
   }
-  access();
+  if (store.cache) {
+    access();
+  }
 }
