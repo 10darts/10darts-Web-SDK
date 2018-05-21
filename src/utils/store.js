@@ -83,10 +83,12 @@ function createStore() {
     },
     set lastAccess(lastAccess) {
       currentState.lastAccess = lastAccess;
-      if (lastAccess === null || lastAccess === undefined) {
-        localStorage.removeItem(LAST_ACCESS);
-      } else {
-        localStorage.setItem(LAST_ACCESS, lastAccess);
+      if (currentState.cache) {
+        if (lastAccess === null || lastAccess === undefined) {
+          localStorage.removeItem(LAST_ACCESS);
+        } else {
+          localStorage.setItem(LAST_ACCESS, lastAccess);
+        }
       }
     },
     get lastAccess() {
