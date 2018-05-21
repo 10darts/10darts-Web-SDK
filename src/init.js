@@ -12,7 +12,7 @@ export default function init(config) {
     debug = false,
     scope = '/',
     serviceWorkerPath = '/',
-    cache,
+    cache = true,
     key,
   } = config;
   store.token = token;
